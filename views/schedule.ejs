@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+  <meta charset="utf-8">
+  <title>Schedule</title>
+</head>
+
+<body>
+  <h1>Schedule</h1>
+  <table>
+    <tr>
+      <th>Faculty</th>
+      <th>Day</th>
+      <th>8:40 - 9:30</th>
+      <th>9:30 - 10:20</th>
+      <th>10:20 - 11:10</th>
+      <th>11:10 - 12:00</th>
+      <th>12:50 - 1:40</th>
+      <th>1:40 - 2:30</th>
+      <th>2:30 - 3:20</th>
+      <th>3:20 - 4:10</th>
+    </tr>
+    <% facultyList.forEach(function(faculty) { %>
+    <tr>
+      <td><%= faculty %></td>
+      <% const today = new Date().toLocaleDateString('en-US', { weekday: 'long' }).toLowerCase(); %>
+      <td><%= today.charAt(0).toUpperCase() + today.slice(1) %></td>
+      <% for (let hour = 1; hour <= 8; hour++) { %>
+      <% const selectScheduleQuery = 'SELECT subject, year FROM schedule WHERE faculty = ? AND day = ? AND hour = ?';
+        connection.query(selectScheduleQuery, [faculty.toLowerCase(), today, hour], function(err, results) {
+          if (err) {
+            throw err;
+          }
+          let scheduleItem = results[0];
+          %>
+      <td><%= scheduleItem ? scheduleItem.subject + ' ' + scheduleItem.year : '' %></td>
+      <% }); %>
+      <% } %>
+    </tr>
+    <% }); %>
+  </table>
+</body>
+
+</html>

@@ -1,0 +1,383 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>Schedule of Cse</title>
+    <link
+      href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha3/dist/css/bootstrap.min.css"
+      rel="stylesheet"
+      integrity="sha384-KK94CHFLLe+nY2dmCWGMq91rCGa5gtU4mk92HdvYe+M/SXH301p5ILy+dN9+nJOZ"
+      crossorigin="anonymous"
+    />
+    <style>
+      /* Set font family and size for the entire page */
+      #akil body {
+        font-family: Arial, sans-serif;
+        font-size: 10px;
+      }
+
+      /* Style for the page title */
+      #akil h1 {
+        font-size: 24px;
+        text-align: center;
+        margin-bottom: 17px;
+      }
+
+      /* Style for the form */
+      #akil form {
+        width: 500px;
+        margin: 0 auto;
+        border: 1px solid #ccc;
+        padding: 10px;
+        border-radius: 2px;
+      }
+
+      /* Style for form labels */
+      #akil label {
+        display: inline-block;
+        width: 120px;
+        text-align: right;
+        margin-right: 10px;
+      }
+
+      /* Style for form input fields */
+      #akil input[type="text"],
+      #akil select {
+        width: 300px;
+        padding: 5px;
+        margin-bottom: 5px;
+        border-radius: 1px;
+        border: 1px solid #ccc;
+      }
+      
+      /* Style for submit button */
+      #akil input[type="submit"] {
+        background-color: #4caf50;
+        color: #fff;
+        border: none;
+        border-radius: 3px;
+        padding: 5px 10px;
+        font-size: 16px;
+        cursor: pointer;
+      }
+
+      /* Style for form hr separator */
+      #akil hr {
+        border: none;
+        border-top: 1px solid #ccc;
+        margin: 10px 0;
+      }
+
+      /* Style for schedule heading */
+      #akil h4 {
+        font-size: 20px;
+        margin-bottom: 10px;
+      }
+
+      /* Style for each schedule item */
+      #akil .schedule-item {
+        display: flex;
+        align-items: center;
+        margin-bottom: 10px;
+      }
+
+      #akil .schedule-item label {
+        width: 80px;
+        margin-right: 10px;
+      }
+
+      #akil .schedule-item input[type="text"] {
+        width: 150px;
+        margin-right: 10px;
+      }
+
+      #akil .schedule-item input[type="text"]:last-child {
+        margin-right: 0;
+      }
+
+      #akil .schedule-item input[type="text"]:read-only {
+        background-color: #eee;
+        border: none;
+      }
+
+      .navbar {
+        background-color: #343a40;
+      }
+      .navbar-nav .nav-link {
+        color: white;
+      }
+      .navbar .navbar-nav .nav-link {
+        color: white;
+      }
+
+      .navbar-brand {
+        color: aliceblue;
+      }
+
+      #addClassTeacherForm {
+        margin-left: 180px;
+        background-color: #153557; /* Set button color */
+        color: white; /* Set text color */
+        padding: 10px 20px; /* Set padding for button */
+        border: none; /* Remove button border */
+        border-radius: 5px; /* Add rounded corners to button */
+        cursor: pointer; /* Change cursor on hover */
+        margin-top: 10px; /* Add margin to top of button */
+      }
+      
+    </style>
+  </head>
+
+  <body>
+    <nav class="navbar navbar-expand-lg">
+      <div class="container-fluid">
+        <a class="navbar-brand" href="/">Home</a>
+        <button
+          class="navbar-toggler"
+          type="button"
+          data-bs-toggle="collapse"
+          data-bs-target="#navbarSupportedContent"
+          aria-controls="navbarSupportedContent"
+          aria-expanded="false"
+          aria-label="Toggle navigation"
+        >
+          <span class="navbar-toggler-icon"></span>
+        </button>
+        <div class="collapse navbar-collapse" id="navbarSupportedContent">
+          <ul class="navbar-nav me-auto mb-2 mb-lg-0">
+            <li class="nav-item">
+              <a
+                class="nav-link active"
+                aria-current="page"
+                href="timetable.html"
+                >Timetable</a
+              >
+            </li>
+            <li class="nav-item">
+              <a class="nav-link active" href="faculty.html">Faculty Login</a>
+            </li>
+            <li class="nav-item">
+              <a class="nav-link active" href="admin.html">Admin login</a>
+            </li>
+            <li class="nav-item">
+              <a class="nav-link active" href="class-teacher.html"
+                >Class Teacher login</a
+              >
+            </li>
+          </ul>
+          <form class="d-flex" role="search">
+            <input
+              class="form-control me-2"
+              type="search"
+              placeholder="Search"
+              aria-label="Search"
+            />
+            <button class="btn btn-outline-success" type="submit">
+              Search
+            </button>
+          </form>
+        </div>
+      </div>
+    </nav>
+    <main id="akil">
+      <div>
+        <h1>Class Schedule Form</h1>
+        <form action="/addScheduleData" method="post">
+          <h4>Class & Section:</h4>
+          <div>
+            <label for="year">Year:</label>
+            <select id="year" name="year" style="width: 300px">
+              <option value="1">1</option>
+              <option value="2">2</option>
+              <option value="3">3</option>
+            </select>
+          </div>
+          <div>
+            <label for="section">Section:</label>
+            <select id="section" name="section" style="width: 300px">
+              <option value="a">A</option>
+              <option value="b">B</option>
+              <option value="c">C</option>
+            </select>
+          </div>
+          <div>
+            <label for="day">Day:</label>
+            <select id="day" name="day" style="width: 300px">
+              <option value="monday">Monday</option>
+              <option value="tuesday">Tuesday</option>
+              <option value="wednesday">Wednesday</option>
+              <option value="thursday">Thursday</option>
+              <option value="friday">Friday</option>
+              <option value="saturday">Saturday</option>
+            </select>
+          </div>
+          <hr />
+          <h4>Schedule:</h4>
+          <div>
+            <div>
+              <label for="hour1">Hour :</label>
+              <input
+                type="text"
+                id="hour1"
+                name="hour1"
+                value="8:40-9:30"
+                readonly
+              />
+            </div>
+            <div>
+              <label for="subject1">Subject:</label>
+              <input type="text" id="subject1" name="subject1"/>
+            </div>
+            <div>
+              <label for="faculty1">Faculty:</label>
+              <input type="text" id="faculty1" name="faculty1"/>
+            </div>
+          </div>
+          <!-- repeat the above div 6 more times for hour2 to hour7 -->
+          <div>
+            <div>
+              <label for="hour2">Hour :</label>
+              <input
+                type="text"
+                id="hour2"
+                name="hour2"
+                value="9:30-10:20"
+                readonly
+              />
+            </div>
+            <div>
+              <label for="subject2">Subject:</label>
+              <input type="text" id="subject2" name="subject2"/>
+            </div>
+            <div>
+              <label for="faculty2">Faculty:</label>
+              <input type="text" id="faculty2" name="faculty2"/>
+            </div>
+          </div>
+          <div>
+            <div>
+              <label for="hour3">Hour :</label>
+              <input
+                type="text"
+                id="hour3"
+                name="hour3"
+                value="10:20-11:10"
+                readonly
+              />
+            </div>
+            <div>
+              <label for="subject3">Subject:</label>
+              <input type="text" id="subject3" name="subject3"/>
+            </div>
+            <div>
+              <label for="faculty3">Faculty:</label>
+              <input type="text" id="faculty3" name="faculty3"/>
+            </div>
+          </div>
+          <div>
+            <div>
+              <label for="hour4">Hour :</label>
+              <input
+                type="text"
+                id="hour4"
+                name="hour4"
+                value="11:10-12:00"
+                readonly
+              />
+            </div>
+            <div>
+              <label for="subject4">Subject:</label>
+              <input type="text" id="subject4" name="subject4"/>
+            </div>
+            <div>
+              <label for="faculty4">Faculty:</label>
+              <input type="text" id="faculty4" name="faculty4"/>
+            </div>
+          </div>
+          <div>
+            <div>
+              <label for="hour5">Hour :</label>
+              <input
+                type="text"
+                id="hour5"
+                name="hour5"
+                value="12:50-1:40"
+                readonly
+              />
+            </div>
+            <div>
+              <label for="subject5">Subject:</label>
+              <input type="text" id="subject5" name="subject5"/>
+            </div>
+            <div>
+              <label for="faculty5">Faculty:</label>
+              <input type="text" id="faculty5" name="faculty5"/>
+            </div>
+          </div>
+          <div>
+            <div>
+              <label for="hour6">Hour :</label>
+              <input
+                type="text"
+                id="hour6"
+                name="hour6"
+                value="1:40-2:30"
+                readonly
+              />
+            </div>
+            <div>
+              <label for="subject6">Subject:</label>
+              <input type="text" id="subject6" name="subject6"/>
+            </div>
+            <div>
+              <label for="faculty6">Faculty:</label>
+              <input type="text" id="faculty6" name="faculty6"/>
+            </div>
+          </div>
+          <div>
+            <div>
+              <label for="hour7">Hour :</label>
+              <input
+                type="text"
+                id="hour7"
+                name="hour7"
+                value="2:30-3:20"
+                readonly
+              />
+            </div>
+            <div>
+              <label for="subject7">Subject:</label>
+              <input type="text" id="subject7" name="subject7"/>
+            </div>
+            <div>
+              <label for="faculty7">Faculty:</label>
+              <input type="text" id="faculty7" name="faculty7"/>
+            </div>
+          </div>
+          <div>
+            <div>
+              <label for="hour8">Hour :</label>
+              <input
+                type="text"
+                id="hour8"
+                name="hour8"
+                value="3:20-4:10"
+                readonly
+              />
+            </div>
+            <div>
+              <label for="subject8">Subject:</label>
+              <input type="text" id="subject8" name="subject8"/>
+            </div>
+            <div>
+              <label for="faculty8">Faculty:</label>
+              <input type="text" id="faculty8" name="faculty8"/>
+            </div>
+          </div>
+          <button type="submit" id="addClassTeacherForm">Submit</button>
+        </form>
+      </div>
+    </main>
+  </body>
+</html>

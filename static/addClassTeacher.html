@@ -1,0 +1,156 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>Schedule of Cse</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha3/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-KK94CHFLLe+nY2dmCWGMq91rCGa5gtU4mk92HdvYe+M/SXH301p5ILy+dN9+nJOZ" crossorigin="anonymous">
+    <style>
+      main {
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        height: 72vh;
+      }
+      .form-container {
+        background-color: #fff;
+        padding: 24px;
+        border-radius: 8px;
+        box-shadow: 0 2px 8px rgba(0,0,0,0.1);
+      }
+
+      h1 {
+        font-size: 32px;
+        font-weight: bold;
+        text-align: center;
+        color: #153557;
+        margin-bottom: 32px;
+      }
+
+      #addClassTeacherForm form {
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+      }
+
+      label {
+        font-size: 16px;
+        font-weight: bold;
+        margin-bottom: 8px;
+        display: block;
+      }
+
+      #addClassTeacherForm input, select {
+        width: 100%;
+        padding: 8px;
+        margin-bottom: 16px;
+        border-radius: 4px;
+        border: 1px solid #ccc;
+        box-sizing: border-box;
+        font-size: 16px;
+      }
+      
+      #addClassTeacherForm select {
+        flex: 1;
+        margin-left: 16px;
+        padding: 8px;
+      }
+  
+      #addClassTeacherForm button {
+        background-color: #153557;
+        color: #fff;
+        font-size: 16px;
+        font-weight: bold;
+        padding: 8px 16px;
+        border-radius: 4px;
+        border: none;
+        cursor: pointer;
+        margin-top: 16px;
+        margin-left: 100px;
+      }
+  
+      #addClassTeacherForm button:hover {
+        background-color: #0c233e;
+      }
+  
+      #addClassTeacherForm button:active {
+        background-color: #081a31;
+      }
+      
+      .navbar {
+        background-color: #343a40;
+      }
+      .navbar-nav .nav-link {
+        color: white;
+      }
+      .navbar .navbar-nav .nav-link  {
+        color: white;
+      }
+      
+      .navbar-brand{
+         color: aliceblue;
+      }
+    </style>
+  </head>
+
+  <body>
+    <nav class="navbar navbar-expand-lg">
+      <div class="container-fluid">
+        <a class="navbar-brand" href="/">Home</a>
+        <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+          <span class="navbar-toggler-icon"></span>
+        </button>
+        <div class="collapse navbar-collapse" id="navbarSupportedContent">
+          <ul class="navbar-nav me-auto mb-2 mb-lg-0">
+            <li class="nav-item">
+              <a class="nav-link active" aria-current="page" href="timetable.html">Timetable</a>
+            </li>
+            <li class="nav-item">
+              <a class="nav-link active" href="faculty.html">Faculty Login</a>
+            </li>
+            <li class="nav-item">
+              <a class="nav-link active" href="admin.html">Admin login</a>
+            </li>
+            <li class="nav-item">
+              <a class="nav-link active" href="class-teacher.html">Class Teacher login</a>
+            </li>
+          </ul>
+          <form class="d-flex" role="search">
+            <input class="form-control me-2" type="search" placeholder="Search" aria-label="Search">
+            <button class="btn btn-outline-success" type="submit">Search</button>
+          </form>
+        </div>
+      </div>
+    </nav>
+    <main>
+      <div class="form-container">
+        <h1>Add Class Teacher</h1>
+        <form id="addClassTeacherForm" action="/addClassTeacherData" method="post">
+          <label for="facultyName">Faculty Name</label>
+          <input type="text" id="facultyName" name="facultyName" required>
+  
+          <label for="className">Class Name</label>
+          <div>
+            <label for="year">Year</label>
+            <select id="year" name="year" required>
+              <option value="1">1</option>
+              <option value="2">2</option>
+              <option value="3">3</option>
+            </select>
+  
+            <label for="section">Section</label>
+            <select id="section" name="section" required>
+              <option value="a">A</option>
+              <option value="b">B</option>
+              <option value="c">C</option>
+            </select>
+          </div>
+  
+          <button>Submit</button>
+        </form>
+      </div>
+    </main>
+  
+    
+  </body>
+</html>

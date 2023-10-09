@@ -1,0 +1,143 @@
+// Define create table query for weekdays
+  const createTableQuery1 = `CREATE TABLE IF NOT EXISTS weekdays (
+    week_id INT PRIMARY KEY AUTO_INCREMENT,
+    day VARCHAR(10) NOT NULL UNIQUE
+  )`;
+
+
+  // Execute create table query
+  connection.query(createTableQuery1, (err, result) => {
+    if (err) throw err;
+    console.log('weekday Table created successfully');
+  });
+// Define the values to be inserted
+const values = [
+    ['Monday'],
+    ['Tuesday'],
+    ['Wednesday'],
+    ['Thursday'],
+    ['Friday'],
+    ['Saturday']
+  ];
+  
+  // Define the insert query
+  const insertQuery = `INSERT IGNORE INTO weekdays (day) VALUES ?`;
+  
+  // Execute the insert query
+  connection.query(insertQuery, [values], (err, result) => {
+    if (err) throw err;
+    console.log(`Inserted ${result.affectedRows} rows into weekdays table`);
+  });
+ 
+  
+    // Create the subjects table if it doesn't exist
+    const createTableQuery2= `CREATE TABLE IF NOT EXISTS subjects (
+      subject_id INT PRIMARY KEY AUTO_INCREMENT,
+      subject_name VARCHAR(255) NOT NULL
+    )`;
+    connection.query(createTableQuery2, (err, result) => {
+      if (err) throw err;
+      console.log('Subjects table created successfully');
+    });
+    // Define the values to be inserted
+const values2 = [
+    ['C'],
+    ['DLD'],
+    ['BE'],
+    ['M1'],
+    ['ENVT'],
+    ['BEE'],
+    ['M2'],
+    ['EC'],
+    ['EP'],
+    ['EW'],
+    ['DMS'],
+    ['DSA'],
+    ['CO'],
+    ['DC'],
+    ['DTPI'],
+    ['PSQT'],
+    ['CN'],
+    ['MPI'],
+    ['JAVA'],
+    ['OS'],
+    ['DBMS'],
+    ['CD'],
+    ['CG'],
+    ['ADS'],
+    ['CP'],
+    ['ML'],
+    ['NNDL'],
+    ['CNS'],
+    ['ITRE'],
+    ['WT']
+  ];
+  
+  // Define the insert query
+  // const insertQuery2 = `INSERT IGNORE INTO subjects (subject_name) VALUES ?`;
+  
+  // // Execute the insert query
+  // connection.query(insertQuery2, [values2], (err, resul) => {
+  //   if (err) throw err;
+  //   console.log(`Inserted ${resul.affectedRows} rows into subjects table`);
+  // });
+  
+
+    // SQL query to create the faculty table
+  const createTableQuery3 = `CREATE TABLE IF NOT EXISTS faculty (
+    faculty_id INT PRIMARY KEY AUTO_INCREMENT,
+    faculty_name VARCHAR(255)
+  )`;
+
+  // Execute the create table query
+  connection.query(createTableQuery3, (err, result) => {
+    if (err) throw err;
+    console.log('Faculty table created successfully');
+  });
+
+  // Define the CREATE TABLE query
+  const createTableQuery4 = `CREATE TABLE IF NOT EXISTS classes (
+    class_id INT PRIMARY KEY AUTO_INCREMENT,
+    year INT NOT NULL,
+    section VARCHAR(255) NOT NULL
+  )`;
+
+  // Execute the CREATE TABLE query
+  connection.query(createTableQuery4, (err, result) => {
+    if (err) throw err;
+    console.log('class Table created successfully');
+  });
+  const insertClassesQuery = `INSERT INTO classes (year, section) SELECT * FROM (SELECT 1, 'a') AS temp WHERE NOT EXISTS (SELECT * FROM classes WHERE year = 1 AND section = 'a') UNION ALL
+  SELECT * FROM (SELECT 1, 'b') AS temp WHERE NOT EXISTS (SELECT * FROM classes WHERE year = 1 AND section = 'b') UNION ALL
+  SELECT * FROM (SELECT 1, 'c') AS temp WHERE NOT EXISTS (SELECT * FROM classes WHERE year = 1 AND section = 'c') UNION ALL
+  SELECT * FROM (SELECT 2, 'a') AS temp WHERE NOT EXISTS (SELECT * FROM classes WHERE year = 2 AND section = 'a') UNION ALL
+  SELECT * FROM (SELECT 2, 'b') AS temp WHERE NOT EXISTS (SELECT * FROM classes WHERE year = 2 AND section = 'b') UNION ALL
+  SELECT * FROM (SELECT 2, 'c') AS temp WHERE NOT EXISTS (SELECT * FROM classes WHERE year = 2 AND section = 'c') UNION ALL
+  SELECT * FROM (SELECT 3, 'a') AS temp WHERE NOT EXISTS (SELECT * FROM classes WHERE year = 3 AND section = 'a') UNION ALL
+  SELECT * FROM (SELECT 3, 'b') AS temp WHERE NOT EXISTS (SELECT * FROM classes WHERE year = 3 AND section = 'b') UNION ALL
+  SELECT * FROM (SELECT 3, 'c') AS temp WHERE NOT EXISTS (SELECT * FROM classes WHERE year = 3 AND section = 'c')`;
+
+connection.query(insertClassesQuery, (err, result) => {
+if (err) throw err;
+console.log(`${result.affectedRows} rows inserted into the classes table.`);
+});
+
+
+
+
+  const createTableQuery5 = `CREATE TABLE IF NOT EXISTS schedule (
+    schedule_id INT PRIMARY KEY AUTO_INCREMENT,
+    period INT,
+    week_id INT,
+    subject_id INT,
+    faculty_id INT,
+    class_id INT,
+    FOREIGN KEY (week_id) REFERENCES weekdays (week_id),
+    FOREIGN KEY (subject_id) REFERENCES subjects (subject_id),
+    FOREIGN KEY (faculty_id) REFERENCES faculty (faculty_id),
+    FOREIGN KEY (class_id) REFERENCES classes (class_id)
+  )`;
+  connection.query(createTableQuery5, (err, result) => {
+    if (err) throw err;
+    console.log('Schedule Table created successfully');
+  });
